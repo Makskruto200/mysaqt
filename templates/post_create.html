@@ -1,0 +1,45 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Создать пост</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<style>
+        input[type="text"], input[type="password"], input[type="submit"] {
+            width: 300px;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+    </style>
+    <header>
+        <h1> Реавиз 23-2112</h1>
+    </header>
+    <nav>
+        <a href="/" style="font-size: 30px;">Главная</a>
+        <a href="/login" style="font-size: 30px;">Войти</a>
+        <a href="/register" style="font-size: 30px;">Зарегестрироваться</a>
+         {%if session['admin_is']%}
+        <a href="/admin" style="font-size: 30px;"> Админка</a>
+        {%endif%}
+
+        <h5>{{session['username']}}</h5>
+
+    </nav>
+    <section>
+        <form action="/post_create" method="post" enctype="multipart/form-data">
+        <label for="post_text">Текст Поста:</label><br>
+        <textarea id="post_text" name="post_text" rows="4" cols="50"></textarea><br>
+        <input type="file" name="file_to_upload"><br>
+        <input type="submit" value="Создать пост">
+    </form>
+    </section>
+    <footer>
+        <p>&copy; 2023  Реавиз 23-2112</p>
+    </footer>
+</body>
+</html>

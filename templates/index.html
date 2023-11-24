@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Реавиз 23-2112</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+    .rows {
+    text-align: center;
+  border: 2px solid #000; /* Добавляем границу к элементу */
+  border-radius: 10px; /* Добавляем закругленные углы к границе */
+  padding: 10px; /* Добавляем отступ, чтобы создать пространство между содержимым и границей */
+}
+    .data {
+
+    display: inline-block; /* Делаем блок инлайновым, чтобы рамка расширялась по содержимому */
+  border: 2px solid #000; /* Добавляем границу к элементу */
+
+}
+
+        input[type="text"], input[type="password"], input[type="submit"] {
+            width: 300px;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1> Реавиз 23-2112</h1>
+    </header>
+    <nav>
+        <a href="/" style="font-size: 30px;">Главная</a>
+        <a href="/login" style="font-size: 30px;">Войти</a>
+        <a href="/register" style="font-size: 30px;">Зарегестрироваться</a>
+        {%if session['admin_is']%}
+        <a href="/admin" style="font-size: 30px;"> Админка</a>
+        {%endif%}
+
+        <h5>{{session['username']}}</h5>
+
+
+    </nav>
+    <section>
+        <h1> Добро пожаловать на форум интитута Реавиз 23-2112!</h1>
+        <h2>Следите за новостями,расписанием и участвуйти в активной жизни Института</h2>
+
+
+        {% for post in rows %}
+    <div class="rows">
+        <h2>{{ post[1] }}</h2>
+        <p>{{ post[2] }}</p>
+
+        {%if post[4]%}
+            <img src="static/images/{{ post[4]}}" width="400" height="400"><p></p>
+        {%endif%}
+
+
+        <p class="data">{{ post[3] }}
+        </p>
+        {%if post[5]%}
+            {% for i in post[5]%}
+
+            <p>{{i[1]}}   {{i[2]}}     {{i[3]}}</p>
+        <br>
+            {% endfor %}
+        {%endif%}
+
+        <form action="/create_comment/{{post[0]}}" method="post">
+
+
+  <label for="comment">Комментарий:</label><br>
+  <textarea id="comment" name="comment" rows="5" cols="50"></textarea><br>
+  <input type="submit" value="Отправить">
+</form>
+    </div>
+    <p></p>
+{% endfor %}
+    </section>
+
+</body>
+</html>

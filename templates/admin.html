@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>АДМИНИСТРАТИВНАЯ ПАНЕЛЬ</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+<style>
+    .rows {
+  border: 2px solid #000; /* Добавляем границу к элементу */
+  border-radius: 10px; /* Добавляем закругленные углы к границе */
+  padding: 10px; /* Добавляем отступ, чтобы создать пространство между содержимым и границей */
+}
+    .data {
+
+    display: inline-block; /* Делаем блок инлайновым, чтобы рамка расширялась по содержимому */
+  border: 2px solid #000; /* Добавляем границу к элементу */
+
+}
+    </style>
+    <header>
+        <h1> Реавиз 23-2112</h1>
+    </header>
+    <nav>
+        <a href="/" style="font-size: 30px;">Главная</a>
+        <a href="/login" style="font-size: 30px;">Войти</a>
+        <a href="/register" style="font-size: 30px;">Зарегестрироваться</a>
+        <h5>{{session['username']}}</h5>
+    </nav>
+    <section>
+        <h1 style="color:grenn">{{con}}</h1>
+        <h1>Пользователи</h1>
+        {% for post in rows %}
+        <div class="">
+         <h2>{{ post[1] }} <a href="/delete_user/{{post[0]}}" style="color:red">Удалить пользователя</a></h2>
+        <p></p>
+        {% endfor %}
+
+            <h1>Посты </h1>
+            <a href="/post_create"><h1 style="color:green">Создать пост</h1></a>
+        {% for post in posts %}
+
+        <div class="rows">
+         <h2>{{ post[1] }}</h2>
+        <h2>{{ post[2] }}</h2>
+        <h2 class="data">{{ post[3] }}</h2></div>
+            <p><a href="/delete_post/{{ post[0] }}" style="color:red">Удалить пост </a></p>
+        <p></p>
+        {% endfor %}
+
+
+            {% for com in comments %}
+
+        <div class="rows">
+         <h2>{{ com [1] }}</h2>
+        <h2>{{ com [2] }}</h2>
+        <h2 class="data">{{ com [3] }}</h2></div>
+            <p><a href="/delete_comment/{{ com [3] }}" style="color:red">Удалить Комментарий </a></p>
+
+        {% endfor %}
+    <p></p>
+
+</body>
+</html>

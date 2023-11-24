@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Вход</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <style>
+        input[type="email"], input[type="password"], input[type="submit"] {
+            width: 300px;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        h3{color:red;}
+    </style>
+
+    <header>
+        <h1> Реавиз 23-2112</h1>
+    </header>
+    <nav>
+        <a href="#" style="font-size: 30px;">Главная</a>
+        <a href="#" style="font-size: 30px;" >Обсуждения</a>
+        <a href="/login" style="font-size: 30px;">Войти</a>
+        <a href="/register" style="font-size: 30px;">Зарегестрироваться</a>
+         {%if session['admin_is']%}
+        <a href="/admin" style="font-size: 30px;"> Админка</a>
+        {%endif%}
+
+    </nav>
+    <section>
+        <h1>Вход</h1>
+        <form method="post">
+            <h1 color="red">{{error}}</h1>
+        <input type="email" name="email" placeholder="Email" required><br>
+        <input type="password" name="password" placeholder="Пароль" required><br>
+        <input type="submit" value="Войти">
+
+
+    </form>
+    </section>
+    <footer>
+        <p>&copy; 2023 Форум школы</p>
+    </footer>
+
+</body>

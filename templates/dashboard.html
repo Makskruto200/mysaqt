@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Аккаунт</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1> Реавиз 23-2112</h1>
+    </header>
+    <nav>
+        <a href="/" style="font-size: 30px;">Главная</a>
+        <a href="/login" style="font-size: 30px;">Войти</a>
+        <a href="/register" style="font-size: 30px;">Зарегестрироваться</a>
+         {%if session['admin_is']%}
+        <a href="/admin" style="font-size: 30px;"> Админка</a>
+        {%endif%}
+
+        <h5>{{session['username']}}</h5>
+    </nav>
+    <section>
+        <h2>Ваш email:{{email}}</h2>
+
+        <p>Ваши Комментарии.</p>
+        {% for i in comment%}
+
+            <p>{{i[1]}}   {{i[2]}}     {{i[3]}}</p>
+
+            {% endfor %}
+    </section>
+    <footer>
+        <p>&copy; 2023  Реавиз 23-2112</p>
+    </footer>
+</body>
+</html>
